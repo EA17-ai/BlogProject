@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+{% for message in get_flashed_messages() %}
+{%if message=="Email ID ALREADY EXISTS...Registration not successful" %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert" align="center">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{%elif message=="Passwords Doesnt Match.Please register again" %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% else %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endif %}
+{% endfor %}
+<div class="container">
+<h1>Registration Form</h1>
+<br>
+
+<div style="margin-top: 50px;margin-left: 200px;margin-right: 150px ;">
+<form method="POST">
+    {{registerform.hidden_tag()}}
+    <div class="input-group">
+        <span class="input-group-text">First and last name</span>
+        {{registerform.first_name(class="form-control" ,placeholder="First Name")}}
+        {{registerform.last_name(class="form-control" ,placeholder="Last Name")}}
+      </div>
+      <br>
+    <div class="input-group">
+        <span class="input-group-text">{{registerform.email_id.label(class="form-label")}}</span>
+        {{registerform.email_id(class="form-control",placeholder="EmailId")}}
+    </div>
+    
+      
+    <br>
+    <div class="input-group">
+        <span class="input-group-text">{{registerform.password.label(class="form-label")}}</span>
+        {{registerform.password(class="form-control",placeholder="Enter Password")}}    
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-text">{{registerform.password2.label(class="form-label")}}</span>
+        {{registerform.password2(class="form-control",placeholder="Re-Enter Password")}}
+    </div>
+
+    
+    
+    <br>
+    {{registerform.submit(class="btn btn-success",style="margin-left: 350px;")}}
+
+
+
+
+</form>
+</div>
+</div>
+{% endblock %}

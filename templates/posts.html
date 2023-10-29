@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% if is_authenticated %}
+
+<table class="table table-dark table-striped">
+    {% for post_id,post_data in all_specific_posts.items() %}
+    <tr>               
+        <td>{{post_data.post_title}}</td>
+        <td>{{post_data.post_content}}</td>
+        <td>{{post_data.date_added}}</td>                            
+    </tr>
+    {% endfor %}    
+</table>
+    
+    
+        
+{% endif %}
+</div>
+{% endblock %}

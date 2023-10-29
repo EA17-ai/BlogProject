@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" >
+    {% if name %}
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div >
+    {% endfor %}
+    <h1>Hi {{name}}. Welcome to the site</h1>    
+    {% else %}
+    <h1>Create your Posts</h1>
+    <div style="margin-left:300px;margin-top:30px;margin-right: 300px;text-transform: uppercase;font-weight:700">
+    <form method="POST">
+        {{form.hidden_tag()}}<br>
+        {{form.post_title.label(class="form-label")}}<br>
+        {{form.post_title(class="form-control")}}<br>
+        {{form.post_content.label(class="form-label")}}<br>
+        {{form.post_content(class="form-control",rows="6")}}<br>
+        
+        {{form.submit(class="btn btn-success",style="background-color:#005B41;margin-left:210px")}}
+    </form>    
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

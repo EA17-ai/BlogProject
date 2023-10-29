@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if is_authenticated %}
+<div class="container">
+    <h1>Users </h1>
+    {% if users %}
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">EMAIL ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for  user_id, user_data in users.items()%}
+            <tr>
+                <th scope="row">{{user_id}}</th>
+             <td>{{user_data.first_name}}</td>      
+            <td> {{user_data.last_name}}</td>
+            <td>{{user_data.email_id}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>     
+        
+      </table>
+    {% else %}
+    <h2 align="center" style="margin-top:150px;">No records in the database</h2>
+    {% endif %}
+    
+    </div>
+
+{% else %}
+<h1>YOu CANT HAVE ACCESS TO THE CONTENT</h1>
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+{% endblock %}
